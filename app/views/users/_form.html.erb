@@ -35,13 +35,13 @@
   </div>
 </div>
 <div class="form-group">
-  <%= select_tag "roles[]", options_for_select(Role.where(show: true).collect{|x| [x.role_name,x.id]}), {:multiple => :multiple, class: 'form-control'} %>
+  <%= select_tag "roles[]", options_for_select(Role.active_roles.collect{|x| [x.role_name,x.id]}), {:multiple => :multiple, class: 'form-control'} %>
 </div>
 <div class="form-group">
   <div>
    <%= file_field_tag 'avatars[]', :html => {:multipart => true}, class: "form-control"%>
     <%#= f.text_field :email, placeholder: "Email",class: "form-control"%>
-    
+
   </div>
 </div>
 

@@ -69,7 +69,7 @@ class RolesController < ApplicationController
   end
   
   def hide_roles
-  	@roles = Role.where(show: true)
+  	@roles = Role.active_roles
   end
 
   private
