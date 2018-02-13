@@ -1,0 +1,13 @@
+<center>
+<button id="showusers">Show Users</button>
+<%= link_to "Create User", new_user_path, class: 'btn btn-primary' %>
+</center>
+<script type="text/javascript">
+  $('#showusers').on('click', function() {
+    $.ajax({
+        type: "GET",
+        url: '/user_ajax',
+        dataType: "script"
+      });
+  })
+</script>

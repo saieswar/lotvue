@@ -1,0 +1,61 @@
+
+
+
+
+<div class="container" style="width: 800px">
+<p id="notice"><%= notice %></p>
+<center>
+<% if @users.present? %>
+<h1>Listing Users</h1>
+<%= will_paginate @users, remote: true%>
+<%= form_tag '/user_ajax', method: :get, remote: true do |f| %>
+  <%= select_tag 'role', options_for_select(Role.where(show: true).collect{ |u| [u.role_name, u.id] }), include_blank: true %>
+
+  <%= select_tag 'order', options_for_select(["ASC","DESC"])%>
+  <%= submit_tag 'search'%>
+<% end %>
+<%#= link_to 'Create user', new_user_path , class: 'btn btn-primary pull-right'%>
+<table class="table table-condensed">
+  <thead >
+    <tr>
+      <th> id </th>
+      <th> First Name </th>
+      <th> Last Name </th>
+      <th> Email </th>
+      <th> Roles </th>
+      <th> Images</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id%></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%user.roles.each do|role|%>
+              <%= role.role_name+"  " %>
+            <% end %>
+        </td>
+        <%#= link_to 'Edit', edit_user_path(user) %>
+        <!-- <td><%#= link_to 'Show', user %></td>
+        <td><%#= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%#= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<br>
+
+</center>
+</div>
+
+
+<script type="text/javascript">
+  $(function(){
+   $('.pagination a').attr('data-remote', 'true')
+});
+</script>

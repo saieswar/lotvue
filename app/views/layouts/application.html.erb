@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lotvue</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      
+      <%= link_to "Lotvue", root_path, class: "navbar-brand" %>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Roles <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Add Roles", new_role_path %></li>
+          <li><%= link_to "Hide Roles", hide_roles_path %></li>
+        </ul>
+      </li>
+      <li><%= link_to "Users", users_path %></li>
+    </ul>
+  </div>
+</nav>
+ <div>
+   
+ </div>
+<%= yield %>
+  <div id = "users_render"></div>
+</body>
+</html>
